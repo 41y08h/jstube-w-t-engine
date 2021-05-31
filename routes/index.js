@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const home = require("./home");
+const subscribers = require("./subscribers");
 
-router.use("/", home);
+router.use("/subscribers", subscribers);
+
 module.exports = router;
