@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="h-16 shadow-sm flex items-center">
+      <div class="container mx-auto">
+        <h1 class="text-3xl font-bold">📺 Youtube</h1>
+      </div>
+    </header>
+    <main class="container mx-auto py-8">
+      <ul class="grid grid-cols-4 gap-8">
+        <% videos.forEach(function(video, i){ %>
+        <div class="flex flex-col">
+          <a href="/watch?v=<%=video.id%>">
+            <img class="h-48 w-64 rounded-md" src="<%= video.thumbnail %>" />
+          </a>
+          <p class="text-xl font-semibold"><%= video.title %></p>
+        </div>
+        <% }) %>
+      </ul>
+    </main>
+  </body>
+</html>
