@@ -30,11 +30,64 @@
       <div class="flex">
         <img class="w-8 h-8" src="<%=video.channel.picture%>" />
         <p class="text-md text-gray-500 mt-4"><%= video.channel.name %></p>
+        <p id="subscribersCountTxt" class="text-md text-gray-500 mt-4">
+          <%= video.channel.subscribers.count %> Subscribers
+        </p>
       </div>
-      <button id="subscribeBtn">Subscribe</button>
+      <button
+        id="subscribeBtn"
+        class="
+          <%-
+          video.channel.subscribers.isUserSubscribed
+          ?
+          'subscribed':
+          ''
+          %>
+        "
+      >
+        <%- video.channel.subscribers.isUserSubscribed ? 'subscribed':
+        'subscribe' %>
+        <div class="w-64 ml-auto">
+          <button
+            id="likeBtn"
+            class="
+              <%-
+              video.ratings.userRatingStatus
+              ===
+              'LIKED'
+              ?
+              'text-gray-400':
+              ''
+              %>
+            "
+          >
+            <%= video.ratings.count.likes %>like
+          </button>
+          <button
+            id="dislikeBtn"
+            class="
+              <%-
+              video.ratings.userRatingStatus
+              ===
+              'DISLIKED'
+              ?
+              'text-gray-400':
+              ''
+              %>
+            "
+          >
+            <%= video.ratings.count.dislikes %>dislike
+          </button>
+        </div>
+        <p><%= video.description %></p>
+      </button>
     </main>
     <script>
       const channelId = parseInt("<%- video.channel.id %>");
+      const videoId = parseInt("<%- video.id %>");
+      let isUserSubscribed = Boolean(
+        "<%- video.channel.subscribers.isUserSubscribed %>" == "true"
+      );
     </script>
     <script src="/public/js/watch.js"></script>
   </body>
